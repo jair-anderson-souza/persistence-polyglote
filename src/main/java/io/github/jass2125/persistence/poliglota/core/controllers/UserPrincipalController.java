@@ -5,8 +5,10 @@
  */
 package io.github.jass2125.persistence.poliglota.core.controllers;
 
+import io.github.jass2125.persistence.poliglota.core.services.client.UserPrincipalService;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -17,9 +19,13 @@ import javax.inject.Named;
 @RequestScoped
 @Named
 public class UserPrincipalController implements Serializable {
-    
+
+    @Inject
+    private UserPrincipalService userService;
+
     public String teste() {
         System.out.println("dklfsd");
+        userService.v();
         return "index";
     }
 }

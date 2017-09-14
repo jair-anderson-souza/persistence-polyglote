@@ -12,4 +12,5 @@ package io.github.jass2125.persistence.poliglota.core.services.client;
  */
 public interface UserPrincipalService {
 
+    public void v();
 }

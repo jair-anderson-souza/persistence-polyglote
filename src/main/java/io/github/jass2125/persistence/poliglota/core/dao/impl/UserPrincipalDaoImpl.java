@@ -7,21 +7,31 @@ package io.github.jass2125.persistence.poliglota.core.dao.impl;
 
 import io.github.jass2125.persistence.poliglota.core.dao.client.UserPrincipalDao;
 import io.github.jass2125.persistence.poliglota.core.entity.UserPrincipal;
+import io.github.jass2125.persistence.poliglota.core.interceptors.Transactional;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
  * @author 13/09/2017 20:20:04
  */
-public class UserPrincipalDaoImpl implements UserPrincipalDao{
+public class UserPrincipalDaoImpl implements UserPrincipalDao {
 
-    @PersistenceContext
+    @Inject
     private EntityManager em;
 
+    @Override
+
+    @Transactional
     public void persist(UserPrincipal userPrincipal) {
-        em.persist(userPrincipal);
+        try {
+            boolean open = em.isOpen();
+            System.out.println(open);
+            em.persist(userPrincipal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
