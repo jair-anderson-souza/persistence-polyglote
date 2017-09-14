@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.persistence.poliglota.core.interceptors;
 
+import io.github.jass2125.persistence.poliglota.core.annotations.Transactional;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
@@ -20,7 +21,7 @@ import javax.persistence.EntityManager;
 @Interceptor
 @Transactional
 @Priority(Interceptor.Priority.APPLICATION)
-public class ManagerTransaction {
+public class TransactionInterceptor {
 
     @Inject
     private EntityManager em;

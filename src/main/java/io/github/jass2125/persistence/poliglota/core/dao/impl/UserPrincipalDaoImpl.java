@@ -5,9 +5,9 @@
  */
 package io.github.jass2125.persistence.poliglota.core.dao.impl;
 
+import io.github.jass2125.persistence.poliglota.core.annotations.Transactional;
 import io.github.jass2125.persistence.poliglota.core.dao.client.UserPrincipalDao;
 import io.github.jass2125.persistence.poliglota.core.entity.UserPrincipal;
-import io.github.jass2125.persistence.poliglota.core.interceptors.Transactional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 

@@ -20,7 +20,7 @@ import javax.persistence.Persistence;
  * @author 13/09/2017 23:29:43
  */
 @ApplicationScoped
-public class EntityManer implements Serializable {
+public class EntityManerProducer implements Serializable {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
 
