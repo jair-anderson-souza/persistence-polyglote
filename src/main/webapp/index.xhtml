@@ -8,7 +8,9 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:commandButton class="btn btn-default" value="Teste" action="#{userPrincipalController.teste()}"/>
+            <h:inputText value="#{userPrincipalController.user.email}"/>
+            <h:inputText value="#{userPrincipalController.user.password}"/>
+            <h:commandButton class="btn btn-default" value="Teste" action="#{userPrincipalController.login()}"/>
         </h:form> 
     </h:body>
 </html>

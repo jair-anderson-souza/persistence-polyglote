@@ -5,6 +5,8 @@
  */
 package io.github.jass2125.persistence.poliglota.core.services.client;
 
+import io.github.jass2125.persistence.poliglota.core.entity.UserPrincipal;
+
 /**
  *
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
@@ -12,5 +14,5 @@ package io.github.jass2125.persistence.poliglota.core.services.client;
  */
 public interface UserPrincipalService {
 
-    public void v();
+    public UserPrincipal searchUserByEmailAndPassword(UserPrincipal userPrincipal);
 }

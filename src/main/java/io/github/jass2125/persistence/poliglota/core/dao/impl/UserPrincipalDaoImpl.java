@@ -5,11 +5,19 @@
  */
 package io.github.jass2125.persistence.poliglota.core.dao.impl;
 
-import io.github.jass2125.persistence.poliglota.core.annotations.Transactional;
+import io.github.jass2125.persistence.poliglota.core.exceptions.LoginInvalidException;
+import io.github.jass2125.persistence.poliglota.core.exceptions.QuerySyntaxException;
 import io.github.jass2125.persistence.poliglota.core.dao.client.UserPrincipalDao;
 import io.github.jass2125.persistence.poliglota.core.entity.UserPrincipal;
+import io.github.jass2125.persistence.poliglota.core.exceptions.DuplicateCredentialException;
+import io.github.jass2125.persistence.poliglota.core.exceptions.EmailException;
+import io.github.jass2125.persistence.poliglota.core.exceptions.NoUserException;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
 
 /**
  *
@@ -22,15 +30,59 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
     private EntityManager em;
 
     @Override
+    public UserPrincipal searchUserPrincipalByEmailAndPassword(UserPrincipal userPrincipal) {
+        checkQuantity(userPrincipal.getEmail());
+        UserPrincipal user = checkUser(userPrincipal);
+        return user;
+    }
 
-    @Transactional
-    public void persist(UserPrincipal userPrincipal) {
+    private void checkQuantity(String email) {
+        int countEmails = countEmails(email);
+        if (countEmails > 1) {
+            throw new EmailException("Já existe um usuário com esse e-mail cadastrado.");
+        }
+    }
+
+    public int countEmails(String email) {
+        Query query = createQuery("SELECT COUNT(U.id) FROM UserPrincipal U WHERE U.email = :email").setParameter("email", email);
+        List<UserPrincipal> retrieveResultList = retrieveResultList(query);
+        return retrieveResultList.size();
+    }
+
+    private Query createQuery(String query) {
         try {
-            boolean open = em.isOpen();
-            System.out.println(open);
-            em.persist(userPrincipal);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Query q = em.createQuery(query);
+            return q;
+        } catch (IllegalArgumentException e) {
+            throw new QuerySyntaxException(e, "Não foi possível criar a consulta!!");
+        }
+    }
+
+    private List<UserPrincipal> retrieveResultList(Query query) {
+        List<UserPrincipal> listUserPrincipal = query.getResultList();
+        return listUserPrincipal;
+    }
+
+    public UserPrincipal checkUser(UserPrincipal user) {
+        Query query = createQuery("SELECT U FROM UserPrincipal U WHERE U.email = :email AND U.password = :password").setParameter("email", user.getEmail()).setParameter("password", user.getPassword());
+        UserPrincipal userFind = retrieveSingleResult(query);
+        if (isNil(userFind)) {
+            throw new LoginInvalidException("Os dados estão inválidos, tente novamente.");
+        }
+        return userFind;
+    }
+
+    private boolean isNil(UserPrincipal user) {
+        return user == null;
+    }
+
+    private UserPrincipal retrieveSingleResult(Query query) {
+        try {
+            return (UserPrincipal) query.getSingleResult();
+        } catch (NoResultException e) {
+            throw new NoUserException(e, "Objeto não foi encontrado");
+        } catch (NonUniqueResultException e) {
+            throw new DuplicateCredentialException(e, "Existe mais um usuário com essas credenciais!");
         }
     }
 

@@ -21,10 +21,8 @@ public class UserPrincipalServiceImpl implements UserPrincipalService {
     private UserPrincipalDao userDao;
 
     @Override
-    public void v() {
-        System.out.println("teste");
-        UserPrincipal user = new UserPrincipal("Anderson", "jair_anderson_bs@hotmail.com", "123456");
-        userDao.persist(user);
+    public UserPrincipal searchUserByEmailAndPassword(UserPrincipal userPrincipal) {
+        return userDao.searchUserPrincipalByEmailAndPassword(userPrincipal);
     }
 
 }

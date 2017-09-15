@@ -14,6 +14,6 @@ import io.github.jass2125.persistence.poliglota.core.entity.UserPrincipal;
  */
 public interface UserPrincipalDao {
 
-    public void persist(UserPrincipal userPrincipal);
+    public UserPrincipal searchUserPrincipalByEmailAndPassword(UserPrincipal userPrincipal);
 
 }
