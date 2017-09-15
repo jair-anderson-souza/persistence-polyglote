@@ -5,7 +5,6 @@
  */
 package io.github.jass2125.persistence.poliglota.core.interceptors;
 
-import io.github.jass2125.persistence.poliglota.core.annotations.Transactional;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
@@ -14,6 +13,7 @@ import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.RollbackException;
+import io.github.jass2125.persistence.poliglota.core.annotations.TransactionalPersistence;
 
 /**
  *
@@ -21,9 +21,9 @@ import javax.persistence.RollbackException;
  * @author 14/09/2017 00:49:29
  */
 @Interceptor
-@Transactional
+@TransactionalPersistence
 @Priority(Interceptor.Priority.APPLICATION)
-public class TransactionInterceptor {
+public class TransactionPersistenceInterceptor {
 
     @Inject
     private EntityManager em;

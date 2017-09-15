@@ -18,6 +18,6 @@ import javax.interceptor.InterceptorBinding;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @InterceptorBinding
-public @interface Transactional {
+public @interface TransactionalPersistence {
 
 }
