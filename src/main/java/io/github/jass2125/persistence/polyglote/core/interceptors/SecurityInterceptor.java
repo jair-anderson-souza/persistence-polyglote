@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
+import io.github.jass2125.persistence.polyglote.core.annotations.Session;
 
 /**
  *
@@ -25,7 +25,7 @@ import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
 @SecurityAnnotation
 public class SecurityInterceptor {
 
-    @Inject @UserSession
+    @Inject @Session
     private UserPrincipal userOn;
 
     @AroundInvoke

@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.persistence.polyglote.core.interceptors;
 
+import io.github.jass2125.persistence.polyglote.core.exceptions.TransactionalException;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;

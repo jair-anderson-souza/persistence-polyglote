@@ -7,6 +7,7 @@ package io.github.jass2125.persistence.polyglote.core.controllers;
 
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
+import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ public class LogController implements Serializable {
     @Inject
     private UserPrincipal user;
     @Inject
-    private Session session;
+    private SessionConfig session;
     @Inject
     private UserPrincipalService userService;
     private String pageToRedirect;

@@ -11,8 +11,8 @@ import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
+import io.github.jass2125.persistence.polyglote.core.annotations.Session;
 
 /**
  *
@@ -25,7 +25,7 @@ import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincip
 public class UserPrincipalController implements Serializable {
 
     @Inject
-    @UserSession
+    @Session
     private UserPrincipal user;
     @Inject
     private UserPrincipalService userService;

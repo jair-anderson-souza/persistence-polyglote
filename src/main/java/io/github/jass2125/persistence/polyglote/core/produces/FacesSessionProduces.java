@@ -5,20 +5,18 @@
  */
 package io.github.jass2125.persistence.polyglote.core.produces;
 
-import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
-import java.io.Serializable;
+import java.util.Map;
 import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
- * @author 15/09/2017 20:17:50
+ * @author 16/09/2017 16:35:04
  */
-public class UserProducer implements Serializable {
+public class FacesSessionProduces {
 
     @Produces
-    @UserSession
-    private UserPrincipal user = (UserPrincipal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    private Map<String, Object> sessionParams = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
 }

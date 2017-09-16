@@ -5,21 +5,21 @@
  */
 package io.github.jass2125.persistence.polyglote.core.produces;
 
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-import javax.inject.Qualifier;
+import io.github.jass2125.persistence.polyglote.core.annotations.Session;
+import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
+import java.io.Serializable;
+import javax.enterprise.inject.Produces;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
+ * @author 15/09/2017 20:17:50
  */
-@Qualifier
-@Retention(RUNTIME)
-@Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface UserSession {
+public class UserSession implements Serializable {
+
+    @Produces
+    @Session
+    private UserPrincipal user = (UserPrincipal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+
 }
