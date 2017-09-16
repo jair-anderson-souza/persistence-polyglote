@@ -25,11 +25,12 @@ import io.github.jass2125.persistence.polyglote.core.annotations.Session;
 @SecurityAnnotation
 public class SecurityInterceptor {
 
-    @Inject @Session
+    @Inject
+    @Session
     private UserPrincipal userOn;
 
     @AroundInvoke
-    public Object verifyUser(InvocationContext context) throws Exception {
+    public Object checkSession(InvocationContext context) throws Exception {
         if (userOn == null) {
             throw new LoginInvalidException("Erro no login!!!");
         }

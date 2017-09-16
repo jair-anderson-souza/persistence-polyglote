@@ -39,6 +39,7 @@ public class UserPrincipalController implements Serializable {
     }
 
     public String editUserPrincipal() {
+        
         UserPrincipal update = userService.update(user);
         System.out.println(update);
         return "edit.xhtml";
