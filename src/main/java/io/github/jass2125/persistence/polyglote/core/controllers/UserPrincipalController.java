@@ -5,12 +5,14 @@
  */
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
+import io.github.jass2125.persistence.polyglote.core.annotations.SecurityAnnotation;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
-import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
+import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 
 /**
  *
@@ -19,18 +21,14 @@ import javax.inject.Named;
  */
 @RequestScoped
 @Named
+@SecurityAnnotation
 public class UserPrincipalController implements Serializable {
 
     @Inject
+    @UserSession
     private UserPrincipal user;
     @Inject
-    private Session session;
-    @Inject
     private UserPrincipalService userService;
-    private String pageToRedirect;
-
-    public UserPrincipalController() {
-    }
 
     public UserPrincipal getUser() {
         return user;
@@ -40,35 +38,10 @@ public class UserPrincipalController implements Serializable {
         this.user = user;
     }
 
-    public String login() {
-        UserPrincipal userTemp = tryFindUser();
-        this.pageToRedirect = setPageToRedirect(userTemp);
-        return pageToRedirect;
+    public String editUserPrincipal() {
+        UserPrincipal update = userService.update(user);
+        System.out.println(update);
+        return "edit.xhtml";
     }
 
-    private UserPrincipal tryFindUser() {
-        try {
-            return userService.searchUserByEmailAndPassword(user);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private String setPageToRedirect(UserPrincipal userTemp) {
-        if (isNull(userTemp)) {
-            return "index?faces-redirect=true";
-        }
-        initializeSession(userTemp);
-        return "home?faces-redirect=true";
-    }
-
-    private boolean isNull(UserPrincipal userTemp) {
-        return userTemp == null;
-    }
-
-    private void initializeSession(UserPrincipal user) {
-        session.initializeSession(user);
-        
-    }
 }

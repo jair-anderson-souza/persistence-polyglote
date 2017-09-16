@@ -16,4 +16,6 @@ public interface UserPrincipalDao {
 
     public UserPrincipal searchUserPrincipalByEmailAndPassword(UserPrincipal userPrincipal);
 
+    public UserPrincipal updateUserPrincipal(UserPrincipal userPrincipal);
+
 }

@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.persistence.polyglote.core.dao.impl;
 
+import io.github.jass2125.persistence.polyglote.core.annotations.TransactionalPersistence;
 import io.github.jass2125.persistence.polyglote.core.exceptions.LoginInvalidException;
 import io.github.jass2125.persistence.polyglote.core.exceptions.QuerySyntaxException;
 import io.github.jass2125.persistence.polyglote.core.dao.client.UserPrincipalDao;
@@ -34,6 +35,12 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
         checkQuantity(userPrincipal.getEmail());
         UserPrincipal user = checkUser(userPrincipal);
         return user;
+    }
+
+    @Override
+    @TransactionalPersistence
+    public UserPrincipal updateUserPrincipal(UserPrincipal userPrincipal) {
+        return em.merge(userPrincipal);
     }
 
     private void checkQuantity(String email) {

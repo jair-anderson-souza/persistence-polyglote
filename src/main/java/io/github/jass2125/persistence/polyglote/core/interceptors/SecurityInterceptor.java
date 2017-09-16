@@ -8,12 +8,12 @@ package io.github.jass2125.persistence.polyglote.core.interceptors;
 import io.github.jass2125.persistence.polyglote.core.annotations.SecurityAnnotation;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 import io.github.jass2125.persistence.polyglote.core.exceptions.LoginInvalidException;
-import io.github.jass2125.persistence.polyglote.core.produces.UserOn;
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
 
 /**
  *
@@ -25,7 +25,7 @@ import javax.interceptor.InvocationContext;
 @SecurityAnnotation
 public class SecurityInterceptor {
 
-    @Inject @UserOn
+    @Inject @UserSession
     private UserPrincipal userOn;
 
     @AroundInvoke

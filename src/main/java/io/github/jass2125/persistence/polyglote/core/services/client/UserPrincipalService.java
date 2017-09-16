@@ -15,4 +15,6 @@ import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 public interface UserPrincipalService {
 
     public UserPrincipal searchUserByEmailAndPassword(UserPrincipal userPrincipal);
+
+    public UserPrincipal update(UserPrincipal userPrincipal);
 }

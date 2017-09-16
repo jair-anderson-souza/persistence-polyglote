@@ -26,8 +26,14 @@ public class UserPrincipalServiceImpl implements UserPrincipalService {
             UserPrincipal user = userDao.searchUserPrincipalByEmailAndPassword(userPrincipal);
             return user;
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public UserPrincipal update(UserPrincipal userPrincipal) {
+        return userDao.updateUserPrincipal(userPrincipal);
     }
 
 }

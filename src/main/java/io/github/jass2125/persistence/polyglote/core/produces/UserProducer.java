@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 public class UserProducer implements Serializable {
 
     @Produces
-    @UserOn
+    @UserSession
     private UserPrincipal user = (UserPrincipal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 
 }

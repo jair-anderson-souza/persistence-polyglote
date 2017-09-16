@@ -6,10 +6,10 @@
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
-import io.github.jass2125.persistence.polyglote.core.produces.UserOn;
 import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import io.github.jass2125.persistence.polyglote.core.produces.UserSession;
 
 /**
  *
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class Session {
 
     @Inject
-    @UserOn
+    @UserSession
     private UserPrincipal user;
     @Inject
     private Map<String, Object> session;
