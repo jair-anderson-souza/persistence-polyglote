@@ -6,11 +6,9 @@
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
-import io.github.jass2125.persistence.polyglote.core.produces.UserOn;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,8 +24,7 @@ public class UserPrincipalController implements Serializable {
     @Inject
     private UserPrincipal user;
     @Inject
-    @UserOn
-    private UserPrincipal userOn;
+    private Session session;
     @Inject
     private UserPrincipalService userService;
     private String pageToRedirect;
@@ -43,41 +40,35 @@ public class UserPrincipalController implements Serializable {
         this.user = user;
     }
 
-    public UserPrincipal getUserOn() {
-        return userOn;
-    }
-
-    public void setUserOn(UserPrincipal userOn) {
-        this.userOn = userOn;
-    }
-
     public String login() {
-        tryFindUser();
-        this.pageToRedirect = setPageToRedirect();
+        UserPrincipal userTemp = tryFindUser();
+        this.pageToRedirect = setPageToRedirect(userTemp);
         return pageToRedirect;
     }
 
-    private void tryFindUser() {
+    private UserPrincipal tryFindUser() {
         try {
-            userOn = userService.searchUserByEmailAndPassword(user);
+            return userService.searchUserByEmailAndPassword(user);
         } catch (RuntimeException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    private String setPageToRedirect() {
-        if (isNull(userOn)) {
+    private String setPageToRedirect(UserPrincipal userTemp) {
+        if (isNull(userTemp)) {
             return "index?faces-redirect=true";
         }
-        initializeSession();
+        initializeSession(userTemp);
         return "home?faces-redirect=true";
     }
 
-    private boolean isNull(UserPrincipal userOn) {
-        return userOn == null;
+    private boolean isNull(UserPrincipal userTemp) {
+        return userTemp == null;
     }
 
-    private void initializeSession() {
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userOn);
+    private void initializeSession(UserPrincipal user) {
+        session.initializeSession(user);
+        
     }
 }
