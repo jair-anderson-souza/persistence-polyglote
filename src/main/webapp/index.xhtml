@@ -9,7 +9,7 @@
     <h:body>
         <h:form>
             <h:inputText value="#{logController.user.email}"/>
-            <h:inputText value="#{logController.user.password}"/>
+            <h:inputSecret value="#{logController.user.password}"/>
             <h:commandButton class="btn btn-default" value="Teste" action="#{logController.login()}"/>
         </h:form> 
     </h:body>
