@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.persistence.polyglote.core.controllers;
+package io.github.jass2125.persistence.polyglote.core.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Document implements Serializable {
     private List<String> keywords;
     private String abstractText;
     private Long year;
-    private Area area;
+    private String area;
 
     public Document() {
     }
@@ -75,11 +75,11 @@ public class Document implements Serializable {
         this.year = year;
     }
 
-    public Area getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(String area) {
         this.area = area;
     }
 

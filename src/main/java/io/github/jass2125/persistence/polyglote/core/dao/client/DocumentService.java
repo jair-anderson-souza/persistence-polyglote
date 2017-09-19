@@ -6,7 +6,7 @@
 
 package io.github.jass2125.persistence.polyglote.core.dao.client;
 
-import io.github.jass2125.persistence.polyglote.core.controllers.Document;
+import io.github.jass2125.persistence.polyglote.core.entity.Document;
 
 /**
  *

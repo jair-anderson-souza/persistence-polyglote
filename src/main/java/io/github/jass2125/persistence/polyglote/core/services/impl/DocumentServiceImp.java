@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.persistence.polyglote.core.dao.impl;
+package io.github.jass2125.persistence.polyglote.core.services.impl;
 
-import io.github.jass2125.persistence.polyglote.core.controllers.Document;
+import io.github.jass2125.persistence.polyglote.core.entity.Document;
 import io.github.jass2125.persistence.polyglote.core.dao.client.DocumentDao;
 import io.github.jass2125.persistence.polyglote.core.dao.client.DocumentService;
 import javax.inject.Inject;

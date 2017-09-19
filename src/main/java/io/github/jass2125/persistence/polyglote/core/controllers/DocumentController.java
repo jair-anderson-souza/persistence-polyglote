@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
+import io.github.jass2125.persistence.polyglote.core.entity.Document;
 import io.github.jass2125.persistence.polyglote.core.dao.client.DocumentService;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
