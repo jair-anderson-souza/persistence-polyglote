@@ -5,6 +5,7 @@
  */
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
+import io.github.jass2125.persistence.polyglote.core.dao.client.DocumentService;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,6 +22,8 @@ public class DocumentController implements Serializable {
 
     @Inject
     private Document document;
+    @Inject
+    private DocumentService documentService;
 
     public DocumentController() {
     }
@@ -35,6 +38,7 @@ public class DocumentController implements Serializable {
 
     public String regisrerDocument() {
         System.out.println(document);
+        documentService.save(document);
         return "register?faces-redirect=true";
     }
 
