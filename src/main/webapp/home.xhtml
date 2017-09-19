@@ -1,16 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Initial</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css"></link>
-    </h:head>
-    <h:body>
-        <a href="edit.xhtml">Editar Perfil</a>
-        <h:form>
-            <h:inputText value="#{userPrincipalController.user.name}" />
-        </h:form>
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="/layout.xhtml">
+        <ui:define name="centro">
+            Aqui é o centro do index!
+        </ui:define>
+    </ui:decorate>
 </html>
+
 
