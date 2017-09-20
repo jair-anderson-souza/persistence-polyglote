@@ -16,11 +16,22 @@
 .footer {
     position:absolute !important;
     bottom:0;
-    width:100%;
+    width:99%;
     height: 40px;
     background-color: #F2EEEE;
-    
+    border-radius: 5px;
+    text-align: center;
 }
+
+.menu{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    background-color: #000;
+       
+}
+
+
 
 html, body {
     height:100%;
