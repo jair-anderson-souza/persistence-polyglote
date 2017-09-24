@@ -8,25 +8,29 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"></link>
     </h:head>
     <h:body>
-        <h:form>
+
+        <h:form enctype="multipart/form-data">
+
+            <h:message for="doc"/>
+            <h:messages/>
 
             <h:outputText value="Título"/>
-            <h:inputText value="#{documentController.document.title}"/>
+            <h:inputText value="#{documentController.document.title}" required="true" requiredMessage="O TÍTULO deve ser preenchido!"/>
 
             <h:outputText value="Autor"/>
-            <h:inputText value="#{documentController.document.author}"/>
+            <h:inputText value="#{documentController.document.author}" required="true" requiredMessage="O AUTOR deve ser preenchido!"/>
 
             <h:outputText value="Orientador"/>
-            <h:inputText value="#{documentController.document.orientador}"/>
+            <h:inputText value="#{documentController.document.orientador}" required="true" requiredMessage="O ORIENTADOR deve ser preenchido!"/>
 
             <h:outputText value="Resumo"/>
-            <h:inputTextarea value="#{documentController.document.abstractText}"/>
+            <h:inputTextarea value="#{documentController.document.abstractText}" required="true" requiredMessage="O RESUMO deve ser preenchido!"/>
 
             <h:outputText value="Ano"/>
-            <h:inputTextarea value="#{documentController.document.year}"/>
+            <h:inputTextarea value="#{documentController.document.year}" required="true" requiredMessage="O ANO deve ser preenchido!"/>
 
             <h:outputText value="Area"/>
-            <h:selectOneListbox value="#{documentController.document.area}">
+            <h:selectOneListbox value="#{documentController.document.area}" required="true" requiredMessage="A AREA deve ser selecionada!">
                 <f:selectItem itemLabel="Banco de Dados" itemValue="Banco de Dados"/>
                 <f:selectItem itemLabel="Engenharia de Software" itemValue="Engenharia de Software"/>
                 <f:selectItem itemLabel="Redes" itemValue="Redes"/>
@@ -35,6 +39,9 @@
                 <f:selectItem itemLabel="Hardware" itemValue="Hardware"/>
                 <f:selectItem itemLabel="Desenvolvimento de Sistemas" itemValue="Desenvolvimento de Sistemas"/>
             </h:selectOneListbox>
+
+            <h:outputText value="Arquivo"/>
+            <h:inputFile value="#{documentController.part}" validator="documentValidator" id="doc" required="true" requiredMessage="O arquivo deve ser inserido!"/>
 
             <h:commandButton class="btn btn-default" value="Teste" action="#{documentController.regisrerDocument()}"/>
         </h:form> 
