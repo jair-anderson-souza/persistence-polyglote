@@ -8,6 +8,7 @@ package io.github.jass2125.persistence.polyglote.core.controllers;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
+import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -28,6 +29,8 @@ public class LogController implements Serializable {
     private SessionConfig session;
     @Inject
     private UserPrincipalService userService;
+    @Inject
+    private PasswordEncriptor encriptManager;
     private String pageToRedirect;
 
     public LogController() {
@@ -42,6 +45,8 @@ public class LogController implements Serializable {
     }
 
     public String login() {
+        String encryptUserPassword = encryptUserPassword();
+        this.user.setPassword(encryptUserPassword);
         UserPrincipal userTemp = tryFindUser();
         this.pageToRedirect = setPageToRedirect(userTemp);
         return pageToRedirect;
@@ -70,6 +75,11 @@ public class LogController implements Serializable {
 
     private void initializeSession(UserPrincipal user) {
         session.initializeSession(user);
-
     }
+
+    private String encryptUserPassword() {
+        String encryptPassword = this.encriptManager.encryptPassword(user.getPassword());
+        return encryptPassword;
+    }
+
 }

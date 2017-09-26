@@ -1,21 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:decorate template="/layoutD.xhtml">
-        <ui:define name="contexto">
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sistema</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="css/main.css"></link>
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </h:head>
+    <h:body>
+        <div align="center" >
             <h:form>
                 <h1>Recupera Senha</h1>
                 <h:inputText value="#{logController.user.email}" pt:placeholder="Seu Email" /><br/>
+                <br/>
+                <h:inputText value="#{logController.user.name}" pt:placeholder="Seu Nome" /><br/>
                 <br/>
                 <div class="btn-group" role="group" aria-label="...">
                     <h:commandButton class="btn btn-default" value="Recuperar Senha" action="#{logController.login()}"/>
                 </div>
             </h:form>
-	        <div>
-	        	<h1><h:outputLabel value="#{logController.user.password}"></h:outputLabel></h1>
-	        </div>
-	    </ui:define>
-    </ui:decorate>
+        </div>
+        <div>
+            <h1><h:outputLabel value="#{logController.user.password}"></h:outputLabel></h1>
+        </div>
+        <div class='footer' align="center">
+            <h3>rodape</h3>
+        </div>
+    </h:body>
 </html>

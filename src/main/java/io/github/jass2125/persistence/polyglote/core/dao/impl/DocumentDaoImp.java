@@ -33,11 +33,4 @@ public class DocumentDaoImp implements DocumentDao {
         System.out.println(document);
     }
 
-    public static void main(String[] args) {
-        MongoClient client = new MongoClient("localhost", 27017);
-        MongoDatabase database = client.getDatabase("test");
-        System.out.println(database);
-        MongoCollection<org.bson.Document> collection = database.getCollection("teste");
-        System.out.println(collection.count());
-    }
 }

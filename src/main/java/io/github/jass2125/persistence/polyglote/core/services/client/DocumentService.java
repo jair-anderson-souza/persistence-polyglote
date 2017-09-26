@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package io.github.jass2125.persistence.polyglote.core.dao.client;
+package io.github.jass2125.persistence.polyglote.core.services.client;
 
 import io.github.jass2125.persistence.polyglote.core.entity.Document;
 

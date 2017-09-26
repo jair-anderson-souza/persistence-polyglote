@@ -5,7 +5,6 @@
  */
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
-import io.github.jass2125.persistence.polyglote.core.annotations.SecurityAnnotation;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
@@ -21,12 +20,14 @@ import io.github.jass2125.persistence.polyglote.core.annotations.Session;
  */
 @RequestScoped
 @Named
-@SecurityAnnotation
+//@SecurityAnnotation
 public class UserPrincipalController implements Serializable {
 
     @Inject
     @Session
     private UserPrincipal user;
+    @Inject
+    private UserPrincipal newUser;
     @Inject
     private UserPrincipalService userService;
 
@@ -38,11 +39,23 @@ public class UserPrincipalController implements Serializable {
         this.user = user;
     }
 
+    public UserPrincipal getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(UserPrincipal newUser) {
+        this.newUser = newUser;
+    }
+
     public String editUserPrincipal() {
-        
+
         UserPrincipal update = userService.update(user);
         System.out.println(update);
         return "edit.xhtml";
+    }
+
+    public void registerUserPrincipal() {
+        
     }
 
 }

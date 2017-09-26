@@ -16,6 +16,7 @@ import javax.interceptor.InterceptorBinding;
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
  * @author 13/09/2017 20:28:39
  */
+@Deprecated
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @InterceptorBinding
