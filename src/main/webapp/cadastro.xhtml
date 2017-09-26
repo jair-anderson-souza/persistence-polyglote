@@ -1,33 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
- 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Sistema</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css"></link>
-        <link rel="stylesheet" href="css/main.css"></link>
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </h:head>
-    <h:body>
-		<div align="center" >
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="/layoutD.xhtml">
+        <ui:define name="contexto">
             <h:form class="login">
                 <h1>Cadastro de Usuario</h1>
                 <h:inputText value="#{logController.user.email}" pt:placeholder="Email" /><br/>
                 <br/>
-                <h:inputText value="#{logController.user.nome}" pt:placeholder="Nome" /><br/>
+                <h:inputText value="#{logController.user.name}" pt:placeholder="Nome" /><br/>
                 <br/>
                 <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>
                 <div class="btn-group" role="group" aria-label="...">
                     <h:commandButton class="btn btn-default" value="Cadastrar" action="#{logController.login()}"/>
                 </div>
-
-            </h:form>
-        </div>
-        <div class='footer' align="center">
-            <h3>rodape</h3>
-        </div>
-        <br />
-	</h:body>
+			</h:form>
+        </ui:define>
+    </ui:decorate>
 </html>
-
