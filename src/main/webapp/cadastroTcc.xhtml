@@ -1,10 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <ui:decorate template="/layout.xhtml">
         <ui:define name="contexto">
-            
+            <h:form>
+                <h2>Cadastre um Tcc logo abaixo</h2>
+                <section>
+                    <div class="split style1">
+                        
+                        <section>
+                            <h:inputText value=""  pt:placeholder="Titulo"></h:inputText>
+                            <h:inputText value=""  pt:placeholder="Autor"></h:inputText>
+                            <h:inputText value=""  pt:placeholder="Orientador"></h:inputText>
+                        </section>
+                        <section>
+                            <h:inputText value=""  pt:placeholder="Palavra-Chave"></h:inputText>
+                            <h:inputText value=""  pt:placeholder="Ano"></h:inputText>
+                            <h:inputText value=""  pt:placeholder="Area"></h:inputText>
+                            
+                        </section>
+                    </div><br/>
+                    <h:inputTextarea id="message" rows="5" pt:placeholder="Resumo"></h:inputTextarea><br/>
+                    <div class="split style1">
+                        <section>
+                            <h:inputFile ></h:inputFile>
+                        </section>
+                        <section>
+                            <div class="action">
+                                <h:commandButton class="btn btn-default" value="Salvar" action="#{logController.login()}"/>
+                            </div>
+                        </section>
+                    </div>
+                    
+                </section>
+            </h:form>
         </ui:define>
     </ui:decorate>
 </html>
