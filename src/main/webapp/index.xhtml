@@ -1,18 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html   xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Initial</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css"></link>
-        <link rel="stylesheet" href="css/main.css"></link>
-    </h:head>
-
-    <h:body class="fundo">
-
-        <div align="center" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:decorate template="/layoutD.xhtml">
+        <ui:define name="contexto">
             <h:form class="login">
                 <h1>Acesso ao sistema</h1>
                 <h:inputText value="#{logController.user.email}" pt:placeholder="Login" /><br/>
@@ -20,16 +12,9 @@
                 <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>
                 <div class="btn-group" role="group" aria-label="...">
                     <h:commandButton class="btn btn-default" value="Entrar" action="#{logController.login()}"/>
-                    <h:commandButton class="btn btn-default" value="Cadastrar" action="#{logController.login()}"/>
+                    <a href="cadastro.xhtml"><h:commandButton class="btn btn-default" value="Cadastrar" action="#{logController.login()}"/></a>
                 </div>
-
             </h:form>
-        </div>
-        <div class='footer' align="center">
-            <h3>rodape</h3>
-        </div>
-        <br />
-    </h:body>
-
+        </ui:define>
+    </ui:decorate>
 </html>
-
