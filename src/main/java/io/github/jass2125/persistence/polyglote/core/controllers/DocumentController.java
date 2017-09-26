@@ -6,7 +6,7 @@
 package io.github.jass2125.persistence.polyglote.core.controllers;
 
 import io.github.jass2125.persistence.polyglote.core.entity.Document;
-import io.github.jass2125.persistence.polyglote.core.dao.client.DocumentService;
+import io.github.jass2125.persistence.polyglote.core.services.client.DocumentService;
 import io.github.jass2125.persistence.polyglote.core.util.DocumentConvetrer;
 import java.io.IOException;
 import java.io.Serializable;
@@ -56,7 +56,7 @@ public class DocumentController implements Serializable {
 
     public String regisrerDocument() throws IOException {
         DocumentConvetrer c = new DocumentConvetrer();
-        String d = c.d(part.getInputStream());
+        String d = c.converterToText(part.getInputStream());
         System.out.println("D: " + d);
 //        documentService.save(document);
         return "register?faces-redirect=true";

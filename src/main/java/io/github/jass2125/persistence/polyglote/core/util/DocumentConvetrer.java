@@ -19,7 +19,7 @@ import org.xml.sax.ContentHandler;
  */
 public class DocumentConvetrer {
 
-    public String d(InputStream stream) {
+    public String converterToText(InputStream stream) {
         try {
             ContentHandler contenthandler = new BodyContentHandler();
             Metadata metadata = new Metadata();

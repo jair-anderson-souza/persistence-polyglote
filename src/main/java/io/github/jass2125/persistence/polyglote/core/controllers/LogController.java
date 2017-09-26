@@ -8,7 +8,7 @@ package io.github.jass2125.persistence.polyglote.core.controllers;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
-import io.github.jass2125.redis.core.util.PasswordEncriptor;
+import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

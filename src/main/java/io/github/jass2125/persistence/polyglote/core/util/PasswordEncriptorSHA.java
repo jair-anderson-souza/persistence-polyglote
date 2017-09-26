@@ -1,4 +1,4 @@
-package io.github.jass2125.redis.core.util;
+package io.github.jass2125.persistence.polyglote.core.util;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
