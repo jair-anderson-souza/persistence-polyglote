@@ -1,8 +1,10 @@
 .login{
   margin-left: 5%;
   margin-top: 5%;
-  width: 370px;
-  height: 320px;
+  padding: 15px;
+  width: 380px;
+  box-shadow: 10px 10px 10px 5px black;
+  border-radius: 20px;
 }
 
 
@@ -14,7 +16,6 @@
 .menu{
     position: absolute;
     top: 100%;
-    left: 50%;
     background-color: #000;
        
 }

@@ -5,15 +5,17 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:decorate template="/layoutD.xhtml">
         <ui:define name="contexto">
-            <h:form>
-                <h1>Acesso ao sistema</h1>
-                <h:inputText value="#{logController.user.email}" pt:placeholder="Login" /><br/>
-                <br/>
-                <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>
-                <div class="btn-group" role="group" aria-label="...">
-                    <h:commandButton class="btn btn-default" value="Entrar" action="#{logController.login()}"/>
-                </div>
-            </h:form>
+            <div class="login" align="center" style="height: 450px">
+                <h:form>
+                    <h1>Acesso ao sistema</h1>
+                    <h:inputText value="#{logController.user.email}" pt:placeholder="Login" /><br/>
+                    <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <h:commandButton class="btn btn-default" value="Entrar" action="#{logController.login()}"/>
+                        <h:button class="btn btn-default" value="Cadastra"><a href="cadastro.xhtml"></a></h:button>
+                    </div>
+                </h:form>
+            </div>
         </ui:define>
     </ui:decorate>
 </html>
