@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import io.github.jass2125.persistence.polyglote.core.annotations.Session;
+import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 
 /**
  *
@@ -30,6 +31,8 @@ public class UserPrincipalController implements Serializable {
     private UserPrincipal newUser;
     @Inject
     private UserPrincipalService userService;
+    @Inject
+    private PasswordEncriptor enc;
 
     public UserPrincipal getUser() {
         return user;
@@ -48,14 +51,22 @@ public class UserPrincipalController implements Serializable {
     }
 
     public String editUserPrincipal() {
-
         UserPrincipal update = userService.update(user);
         System.out.println(update);
         return "edit.xhtml";
     }
 
     public void registerUserPrincipal() {
-        
+        String encryptPassword = encryptPassword(newUser.getPassword());
+        setPassword(encryptPassword);
+        this.userService.save(newUser);
     }
 
+    public void setPassword(String password) {
+        this.newUser.setPassword(password);
+    }
+
+    public String encryptPassword(String password) {
+        return enc.encryptPassword(password);
+    }
 }

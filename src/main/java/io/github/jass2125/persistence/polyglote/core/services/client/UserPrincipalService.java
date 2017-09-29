@@ -17,4 +17,6 @@ public interface UserPrincipalService {
     public UserPrincipal searchUserByEmailAndPassword(UserPrincipal userPrincipal);
 
     public UserPrincipal update(UserPrincipal userPrincipal);
+
+    public void save(UserPrincipal newUser);
 }

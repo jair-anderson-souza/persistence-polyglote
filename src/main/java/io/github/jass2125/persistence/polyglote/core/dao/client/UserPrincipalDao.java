@@ -18,4 +18,6 @@ public interface UserPrincipalDao {
 
     public UserPrincipal updateUserPrincipal(UserPrincipal userPrincipal);
 
+    public void persiste(UserPrincipal newUser);
+
 }

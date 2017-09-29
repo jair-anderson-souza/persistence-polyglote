@@ -36,4 +36,10 @@ public class UserPrincipalServiceImpl implements UserPrincipalService {
         return userDao.updateUserPrincipal(userPrincipal);
     }
 
+    @Override
+    public void save(UserPrincipal newUser) {
+        System.out.println(newUser);
+        this.userDao.persiste(newUser);
+    }
+
 }
