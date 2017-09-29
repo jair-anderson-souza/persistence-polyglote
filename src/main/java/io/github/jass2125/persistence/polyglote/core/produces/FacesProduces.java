@@ -6,18 +6,22 @@
 package io.github.jass2125.persistence.polyglote.core.produces;
 
 import java.io.Serializable;
-import java.util.Map;
 import javax.enterprise.inject.Produces;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
- * @author 16/09/2017 16:35:04
+ * @since Sep 29, 2017 5:10:19 PM
  */
-public class FacesSessionProduces implements Serializable {
+public class FacesProduces implements Serializable {
 
     @Produces
-    private Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+    private FacesContext context = FacesContext.getCurrentInstance();
+    @Produces
+    private ExternalContext externalContext = context.getExternalContext();
+//    @Produces
+//    private Flash flash = externalContext.getFlash();
 
 }

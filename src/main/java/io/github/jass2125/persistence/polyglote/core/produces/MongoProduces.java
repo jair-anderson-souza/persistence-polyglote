@@ -8,6 +8,7 @@ package io.github.jass2125.persistence.polyglote.core.produces;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.io.Serializable;
 import javax.enterprise.inject.Produces;
 import org.bson.Document;
 
@@ -16,7 +17,7 @@ import org.bson.Document;
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
  * @author 18/09/2017 22:38:07
  */
-public class MongoProduces {
+public class MongoProduces implements Serializable {
 
     @Produces
     private MongoClient client = new MongoClient("localhost", 27017);

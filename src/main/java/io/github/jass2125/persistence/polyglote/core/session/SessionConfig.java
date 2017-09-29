@@ -7,6 +7,7 @@ package io.github.jass2125.persistence.polyglote.core.session;
 
 import io.github.jass2125.persistence.polyglote.core.annotations.Session;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
+import java.io.Serializable;
 import java.util.Map;
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import javax.inject.Inject;
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
  * @author 16/09/2017 16:31:10
  */
-public class SessionConfig {
+public class SessionConfig implements Serializable {
 
     @Inject
     @Session

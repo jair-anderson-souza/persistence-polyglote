@@ -32,6 +32,8 @@ public class LogController implements Serializable {
     @Inject
     private PasswordEncriptor encriptManager;
     private String pageToRedirect;
+    @Inject
+    private FaceMessages message;
 
     public LogController() {
     }
@@ -46,10 +48,19 @@ public class LogController implements Serializable {
 
     public String login() {
         String encryptUserPassword = encryptUserPassword();
-        this.user.setPassword(encryptUserPassword);
+        setEncryptedPassword(encryptUserPassword);
         UserPrincipal userTemp = tryFindUser();
         this.pageToRedirect = setPageToRedirect(userTemp);
         return pageToRedirect;
+    }
+
+    private String encryptUserPassword() {
+        String encryptPassword = this.encriptManager.encryptPassword(user.getPassword());
+        return encryptPassword;
+    }
+
+    public void setEncryptedPassword(String encryptUserPassword) {
+        this.user.setPassword(encryptUserPassword);
     }
 
     private UserPrincipal tryFindUser() {
@@ -63,6 +74,7 @@ public class LogController implements Serializable {
 
     private String setPageToRedirect(UserPrincipal userTemp) {
         if (isNull(userTemp)) {
+            message.teste();
             return "index?faces-redirect=true";
         }
         initializeSession(userTemp);
@@ -75,11 +87,6 @@ public class LogController implements Serializable {
 
     private void initializeSession(UserPrincipal user) {
         session.initializeSession(user);
-    }
-
-    private String encryptUserPassword() {
-        String encryptPassword = this.encriptManager.encryptPassword(user.getPassword());
-        return encryptPassword;
     }
 
     public String redirectToRegisterPage() {
