@@ -12,9 +12,9 @@
                     <h:inputText value="#{logController.user.name}" pt:placeholder="Nome" /><br/>
                     <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>
                     <div class="btn-group" role="group" aria-label="...">
+                        <h:commandButton class="btn btn-default" value="Voltar"  action="#{logController.redirectToIndex()}"/>
                         <h:commandButton class="btn btn-default" value="Cadastrar" action="#{logController.login()}"/>
                     </div>
-
                 </h:form>
             </div>
         </ui:define>

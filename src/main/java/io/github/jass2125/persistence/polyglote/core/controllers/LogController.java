@@ -82,4 +82,11 @@ public class LogController implements Serializable {
         return encryptPassword;
     }
 
+    public String redirectToRegisterPage() {
+        return "cadastro?faces-redirect=true";
+    }
+
+    public String redirectToIndex() {
+        return "index?faces-redirect=true";
+    }
 }
