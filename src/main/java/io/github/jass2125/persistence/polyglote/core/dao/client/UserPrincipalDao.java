@@ -18,6 +18,8 @@ public interface UserPrincipalDao {
 
     public UserPrincipal updateUserPrincipal(UserPrincipal userPrincipal);
 
-    public void persiste(UserPrincipal newUser);
+    public UserPrincipal persiste(UserPrincipal newUser);
+
+    public void searchUserByEmail(String email);
 
 }

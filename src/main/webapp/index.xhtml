@@ -6,8 +6,8 @@
     <ui:decorate template="/layoutD.xhtml">
         <ui:define name="contexto">
             <div class="login" align="center" style="height: 450px">
+                <h:message for="loginFailed" id="loginFailed"/>
                 <h:form>
-                    <h:messages />
                     <h1>Acesso ao sistema</h1>
                     <h:inputText value="#{logController.user.email}" pt:placeholder="Login" /><br/>
                     <h:inputSecret value="#{logController.user.password}" pt:placeholder="senha"/><br/>

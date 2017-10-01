@@ -11,6 +11,8 @@ import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
 import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -74,10 +76,11 @@ public class LogController implements Serializable {
 
     private String setPageToRedirect(UserPrincipal userTemp) {
         if (isNull(userTemp)) {
-            message.teste();
+            message.addMessage("loginFailed", "Seus dados são inválidos, tente novamente!!!");
             return "index?faces-redirect=true";
         }
         initializeSession(userTemp);
+        message.addMessage("loginSuccessful", "Seja Bem Vindo!!");
         return "home?faces-redirect=true";
     }
 

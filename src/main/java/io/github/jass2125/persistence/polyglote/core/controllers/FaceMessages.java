@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * @author <a href="mailto:jair_anderson_bs@hotmail.com">Anderson Souza</a>
  * @since Sep 29, 2017 5:09:27 PM
  */
-@ApplicationScoped
+@RequestScoped
 public class FaceMessages implements Serializable {
 
     @Inject
@@ -26,10 +26,18 @@ public class FaceMessages implements Serializable {
     private FacesContext context;
     private Flash flash;
 
-    public void teste() {
-        flash = context.getExternalContext().getFlash();
+    public void addMessage(String id, String message) {
+        setKeepMessagesToTrue();
+        context.addMessage(id, new FacesMessage(FacesMessage.SEVERITY_INFO, null, message));
+    }
+
+    public void setKeepMessagesToTrue() {
+        create();
         flash.setKeepMessages(true);
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Teste"));
+    }
+
+    public void create() {
+        flash = context.getExternalContext().getFlash();
     }
 
 }

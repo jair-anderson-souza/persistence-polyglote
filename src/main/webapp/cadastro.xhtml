@@ -6,6 +6,7 @@
     <ui:decorate template="/layoutD.xhtml">
         <ui:define name="contexto">
             <div class="login" align="center" style="height: 520px">
+                <h:message for="registerInfo" id="registerInfo"/>
                 <h:form>
                     <h1>Cadastro de Usuario</h1>
                     <h:inputText value="#{userPrincipalController.newUser.email}" pt:placeholder="Email" /><br/>

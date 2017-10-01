@@ -18,5 +18,5 @@ public interface UserPrincipalService {
 
     public UserPrincipal update(UserPrincipal userPrincipal);
 
-    public void save(UserPrincipal newUser);
+    public UserPrincipal save(UserPrincipal newUser);
 }

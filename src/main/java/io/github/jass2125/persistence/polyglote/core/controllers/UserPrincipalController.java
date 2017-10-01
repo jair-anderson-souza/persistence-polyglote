@@ -12,6 +12,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import io.github.jass2125.persistence.polyglote.core.annotations.Session;
+import io.github.jass2125.persistence.polyglote.core.exceptions.EmailInvalidException;
+import io.github.jass2125.persistence.polyglote.core.exceptions.LoginInvalidException;
+import io.github.jass2125.persistence.polyglote.core.exceptions.PersistException;
 import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 
 /**
@@ -33,6 +36,8 @@ public class UserPrincipalController implements Serializable {
     private UserPrincipalService userService;
     @Inject
     private PasswordEncriptor enc;
+    @Inject
+    private FaceMessages messages;
 
     public UserPrincipal getUser() {
         return user;
@@ -59,7 +64,17 @@ public class UserPrincipalController implements Serializable {
     public void registerUserPrincipal() {
         String encryptPassword = encryptPassword(newUser.getPassword());
         setPassword(encryptPassword);
-        this.userService.save(newUser);
+        tryToPersist();
+    }
+
+    public void tryToPersist() {
+        try {
+            this.userService.save(newUser);
+            messages.addMessage("registerInfo", "Seu cadastro foi efetuado com sucesso!!!");
+        } catch (PersistException e) {
+        } catch (EmailInvalidException e) {
+            messages.addMessage("registerInfo", e.getMessage());
+        }
     }
 
     public void setPassword(String password) {
@@ -68,5 +83,9 @@ public class UserPrincipalController implements Serializable {
 
     public String encryptPassword(String password) {
         return enc.encryptPassword(password);
+    }
+
+    public boolean isNil(UserPrincipal user) {
+        return user == null;
     }
 }
