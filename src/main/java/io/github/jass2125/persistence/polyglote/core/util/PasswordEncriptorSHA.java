@@ -47,4 +47,9 @@ public class PasswordEncriptorSHA implements PasswordEncriptor {
     private boolean verifyIfPasswordIsEquals() {
         return passwordToCryptography.equals(passwordEncrypted);
     }
+    public static void main(String[] args) {
+        PasswordEncriptorSHA enc = new PasswordEncriptorSHA();
+        String encryptPassword = enc.encryptPassword("123");
+        System.out.println(encryptPassword);
+    }
 }

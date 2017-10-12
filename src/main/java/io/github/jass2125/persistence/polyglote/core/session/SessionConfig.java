@@ -24,19 +24,16 @@ public class SessionConfig implements Serializable {
     @Inject
     private Map<String, Object> session;
 
-    public SessionConfig() {
-    }
-
     public UserPrincipal getUser() {
         return user;
     }
 
     public void setUser(UserPrincipal user) {
-        this.user = user;
+        this.session.put("user", user);
     }
 
     public void initializeSession(UserPrincipal user) {
+        setUser(user);
         this.user = user;
-        session.put("user", user);
     }
 }

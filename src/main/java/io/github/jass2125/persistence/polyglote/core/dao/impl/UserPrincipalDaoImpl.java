@@ -32,7 +32,6 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
 
     @Override
     public UserPrincipal searchUserPrincipalByEmailAndPassword(UserPrincipal userPrincipal) {
-        checkQuantity(userPrincipal.getEmail());
         UserPrincipal user = checkUser(userPrincipal);
         return user;
     }
@@ -45,7 +44,7 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
 
     public void checkQuantity(String email) {
         int countEmails = countEmails(email);
-        if (countEmails > 1) {
+        if (countEmails >= 1) {
             throw new EmailInvalidException("Já existe um usuário com esse e-mail cadastrado.");
         }
     }
@@ -108,10 +107,12 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
     public void searchUserByEmail(String email) {
         Query query = createQuery("SELECT U FROM UserPrincipal U WHERE U.email = :email").
                 setParameter("email", email);
-        UserPrincipal user = retrieveSingleResult(query);
-        if (!isNil(user)) {
-            throw new EmailInvalidException("O email informado já existe!!!");
+        try {
+            UserPrincipal user = retrieveSingleResult(query);
+            if (!isNil(user)) {
+                throw new EmailInvalidException("O email informado já existe!!!");
+            }
+        } catch (NoUserException e) {
         }
     }
-
 }

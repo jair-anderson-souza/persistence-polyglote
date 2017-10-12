@@ -9,11 +9,11 @@
                 <h:message for="registerInfo" id="registerInfo"/>
                 <h:form>
                     <h1>Cadastro de Usuario</h1>
-                    <h:inputText value="#{userPrincipalController.newUser.email}" pt:placeholder="Email" /><br/>
-                    <h:inputText value="#{userPrincipalController.newUser.name}" pt:placeholder="Nome" /><br/>
-                    <h:inputSecret value="#{userPrincipalController.newUser.password}" pt:placeholder="senha"/><br/>
+                    <h:inputText value="#{userPrincipalController.newUser.email}" pt:placeholder="Email" required="true" requiredMessage="Preencha seu email"/><br/>
+                    <h:inputText value="#{userPrincipalController.newUser.name}" pt:placeholder="Nome" required="true" requiredMessage="Preencha seu nome"/><br/>
+                    <h:inputSecret value="#{userPrincipalController.newUser.password}" pt:placeholder="senha" required="true" requiredMessage="Preencha sua senha"/><br/>
                     <div class="btn-group" role="group" aria-label="...">
-                        <h:commandButton class="btn btn-default" value="Voltar"  action="#{logController.redirectToIndex()}"/>
+                        <h:commandButton class="btn btn-default" value="Voltar" immediate="true"  action="#{logController.redirectToIndex()}"/>
                         <h:commandButton class="btn btn-default" value="Cadastrar" action="#{userPrincipalController.registerUserPrincipal()}"/>
                     </div>
                 </h:form>

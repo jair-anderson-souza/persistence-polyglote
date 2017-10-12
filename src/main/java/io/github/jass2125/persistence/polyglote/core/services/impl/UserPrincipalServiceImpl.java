@@ -7,7 +7,6 @@ package io.github.jass2125.persistence.polyglote.core.services.impl;
 
 import io.github.jass2125.persistence.polyglote.core.dao.client.UserPrincipalDao;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
-import io.github.jass2125.persistence.polyglote.core.exceptions.EmailInvalidException;
 import io.github.jass2125.persistence.polyglote.core.exceptions.NoUserException;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import javax.inject.Inject;
@@ -35,6 +34,7 @@ public class UserPrincipalServiceImpl implements UserPrincipalService {
 
     @Override
     public UserPrincipal update(UserPrincipal userPrincipal) {
+        userDao.searchUserByEmail(userPrincipal.getEmail());
         return userDao.updateUserPrincipal(userPrincipal);
     }
 

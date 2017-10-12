@@ -24,7 +24,6 @@ public class DocumentValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Part part = (Part) value;
-        System.out.println(value);
         if (!part.getContentType().equalsIgnoreCase("application/pdf")) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_INFO, null, "O formato do arquivo não é permitido!!"));
         }

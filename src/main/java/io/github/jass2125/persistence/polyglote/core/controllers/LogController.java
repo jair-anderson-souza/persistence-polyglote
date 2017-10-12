@@ -11,8 +11,6 @@ import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
 import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 

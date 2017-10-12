@@ -22,7 +22,6 @@ public class DocumentServiceImp implements DocumentService {
 
     @Override
     public void save(Document document) {
-        System.out.println(document);
         documentDao.save(document);
     }
 

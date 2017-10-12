@@ -1,55 +1,158 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:decorate template="/layout.xhtml">
-        <ui:define name="contexto">
-            <section>
-                <div class="split style1">
-                    <h:message for="loginSuccessful" id="loginSuccessful"/>
-                    <section>
-                        <h1> <h:outputLabel value="usuario"></h:outputLabel></h1>
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
+      xmlns:h="http://java.sun.com/jsf/html">
 
-                    </section>
-                    <section>
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Home</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"></link>
+        <!-- Custom CSS -->
+        <link href="css/modern-business.css" rel="stylesheet"></link>
 
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
-                        <h:outputLabel value="mais dados do usuario"></h:outputLabel>
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
 
-                    </section>
-
+    </h:head>
+    <h:body>
+        <nav style="background: white" class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <h7>Mudar essa imagem depois</h7>
+            <img src="img/logo.png" style="width: 250px; margin-top: 30px;margin-left: 100px;"/>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <br/>
+                    <h4 class="navbar-form"><a>Sistema Sisloc</a><br/><br/></h4>
+                    <h4 class="navbar-form">Logado como #{userPrincipalController.user.name}</h4>
                 </div>
-            </section>
-            <br/>
-            <br/>
-            <h:form>
-                <h2>Altere seu dados logo a baixo</h2>
-                <section>
-                    <div class="split style1">
-                        <section>
-                            <h:inputText value=""  pt:placeholder="seu nome"></h:inputText>
-                            <h:inputText value=""  pt:placeholder="seu nome"></h:inputText>
-                            <h:inputText value=""  pt:placeholder="seu nome"></h:inputText>
-                        </section>
-                        <section>
-                            <h:inputText value=""  pt:placeholder="seu nome"></h:inputText>
-                            <h:inputText value=""  pt:placeholder="seu nome"></h:inputText>
-                            <div class="action">
-                                <a href="" class="button submit">Submeter</a>
-                            </div>
-
-                        </section>
+                <ul class="nav navbar-nav dropdown" style="margin-top: -40px;margin-left: 600px;">
+                    <li>
+                        <a class="dropdown-toggle" style="font-size: 20px; color: black" data-toggle="dropdown" href="">${sessionScope.user.name}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="edit.xhtml">Editar Perfil</a></li>
+                            <li><a href="#">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br/>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Administração
+                        <small></small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="home.jsp">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="img/manager.png" style="width:200px;"/> 
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Usuarios</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?command=listUsers" class="btn btn-primary">Abrir</a>
+                        </div>
                     </div>
-                </section>
-            </h:form>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="img/feriado.png" style="width: 140px;"/>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Feriados</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="front?command=listHolidays" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="img/escolar.jpg" style="width: 140px;"/>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Material</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?command=listMaterials" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;"/>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Blocos</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="../front?command=listFloors" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;"/>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Salas</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar Salas</p>
+                            <a href="../front?command=listRooms" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="panel panel-default text-center">
+                        <div class="panel-heading">
+                            <img src="" style="width: 140px;"/>
+                        </div>
+                        <div class="panel-body">
+                            <h3><b>Gerenciar Eventos</b></h3>
+                            <p>Adicionar, Editar, Excluir e Visualizar</p>
+                            <a href="front?command=listEvents" class="btn btn-primary">Abrir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright; Sisloc 2016</p>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    </h:body>
 
-        </ui:define>
-    </ui:decorate>
 </html>
-
-

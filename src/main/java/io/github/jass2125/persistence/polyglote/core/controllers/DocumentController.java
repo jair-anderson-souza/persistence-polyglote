@@ -57,7 +57,6 @@ public class DocumentController implements Serializable {
     public String regisrerDocument() throws IOException {
         DocumentConvetrer c = new DocumentConvetrer();
         String d = c.converterToText(part.getInputStream());
-        System.out.println("D: " + d);
 //        documentService.save(document);
         return "register?faces-redirect=true";
     }

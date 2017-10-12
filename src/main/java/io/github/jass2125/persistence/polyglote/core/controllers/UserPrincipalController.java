@@ -13,9 +13,12 @@ import javax.inject.Named;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import io.github.jass2125.persistence.polyglote.core.annotations.Session;
 import io.github.jass2125.persistence.polyglote.core.exceptions.EmailInvalidException;
-import io.github.jass2125.persistence.polyglote.core.exceptions.LoginInvalidException;
 import io.github.jass2125.persistence.polyglote.core.exceptions.PersistException;
+import io.github.jass2125.persistence.polyglote.core.session.SessionConfig;
 import io.github.jass2125.persistence.polyglote.core.util.PasswordEncriptor;
+import java.nio.file.attribute.UserPrincipalLookupService;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  *
@@ -31,13 +34,20 @@ public class UserPrincipalController implements Serializable {
     @Session
     private UserPrincipal user;
     @Inject
+    private SessionConfig sessionConfig;
+    @Inject
     private UserPrincipal newUser;
+    @Inject
+    private UserPrincipal updateUser;
     @Inject
     private UserPrincipalService userService;
     @Inject
     private PasswordEncriptor enc;
     @Inject
     private FaceMessages messages;
+
+    public UserPrincipalController() {
+    }
 
     public UserPrincipal getUser() {
         return user;
@@ -47,18 +57,20 @@ public class UserPrincipalController implements Serializable {
         this.user = user;
     }
 
+    public UserPrincipal getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(UserPrincipal updateUser) {
+        this.updateUser = updateUser;
+    }
+
     public UserPrincipal getNewUser() {
         return newUser;
     }
 
     public void setNewUser(UserPrincipal newUser) {
         this.newUser = newUser;
-    }
-
-    public String editUserPrincipal() {
-        UserPrincipal update = userService.update(user);
-        System.out.println(update);
-        return "edit.xhtml";
     }
 
     public void registerUserPrincipal() {
@@ -87,5 +99,24 @@ public class UserPrincipalController implements Serializable {
 
     public boolean isNil(UserPrincipal user) {
         return user == null;
+    }
+
+    public String editUserPrincipal() {
+        String encryptPassword = encryptPassword(updateUser.getPassword());
+        this.updateUser.setId(user.getId());
+        this.updateUser.setPassword(encryptPassword);
+        tryToUpdate();
+        return "edit.xhtml";
+    }
+
+    private void tryToUpdate() {
+        try {
+            userService.update(updateUser);
+            sessionConfig.setUser(updateUser);
+            messages.addMessage("updateInfo", "Seu cadastro foi atualizado com sucesso!!!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            messages.addMessage("updateInfo", e.getMessage());
+        }
     }
 }

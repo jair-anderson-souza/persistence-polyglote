@@ -30,7 +30,6 @@ public class DocumentDaoImp implements DocumentDao {
         org.bson.Document doc = new org.bson.Document();
         doc.append("document", json);
         colletion.insertOne(doc);
-        System.out.println(document);
     }
 
 }
