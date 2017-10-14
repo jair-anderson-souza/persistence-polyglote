@@ -7,6 +7,7 @@ package io.github.jass2125.persistence.polyglote.core.services.impl;
 
 import io.github.jass2125.persistence.polyglote.core.dao.client.UserPrincipalDao;
 import io.github.jass2125.persistence.polyglote.core.entity.UserPrincipal;
+import io.github.jass2125.persistence.polyglote.core.exceptions.EmailInvalidException;
 import io.github.jass2125.persistence.polyglote.core.exceptions.NoUserException;
 import io.github.jass2125.persistence.polyglote.core.services.client.UserPrincipalService;
 import javax.inject.Inject;
@@ -34,18 +35,28 @@ public class UserPrincipalServiceImpl implements UserPrincipalService {
 
     @Override
     public UserPrincipal update(UserPrincipal userPrincipal) {
-        userDao.searchUserByEmail(userPrincipal.getEmail());
+        UserPrincipal user = userDao.searchUserByEmail(userPrincipal.getEmail());
+        if (!isNil(user)) {
+            throw new EmailInvalidException("Email inválido");
+        }
         return userDao.updateUserPrincipal(userPrincipal);
     }
 
     @Override
     public UserPrincipal save(UserPrincipal newUser) {
         try {
-            userDao.searchUserByEmail(newUser.getEmail());
+            UserPrincipal user = userDao.searchUserByEmail(newUser.getEmail());
+            if (!isNil(user)) {
+                throw new EmailInvalidException("Email inválido.");
+            }
+            this.userDao.persiste(newUser);
         } catch (NoUserException e) {
-            return this.userDao.persiste(newUser);
         }
         return null;
+    }
+
+    private boolean isNil(UserPrincipal user) {
+        return user == null;
     }
 
 }

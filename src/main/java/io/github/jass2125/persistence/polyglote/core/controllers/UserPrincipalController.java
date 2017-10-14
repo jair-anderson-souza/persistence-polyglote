@@ -114,7 +114,7 @@ public class UserPrincipalController implements Serializable {
             userService.update(updateUser);
             sessionConfig.setUser(updateUser);
             messages.addMessage("updateInfo", "Seu cadastro foi atualizado com sucesso!!!");
-        } catch (Exception e) {
+        } catch (EmailInvalidException e) {
             e.printStackTrace();
             messages.addMessage("updateInfo", e.getMessage());
         }

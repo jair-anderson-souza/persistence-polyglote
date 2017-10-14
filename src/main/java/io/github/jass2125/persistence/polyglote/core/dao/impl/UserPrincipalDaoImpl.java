@@ -104,15 +104,13 @@ public class UserPrincipalDaoImpl implements UserPrincipalDao {
     }
 
     @Override
-    public void searchUserByEmail(String email) {
+    public UserPrincipal searchUserByEmail(String email) {
         Query query = createQuery("SELECT U FROM UserPrincipal U WHERE U.email = :email").
                 setParameter("email", email);
         try {
-            UserPrincipal user = retrieveSingleResult(query);
-            if (!isNil(user)) {
-                throw new EmailInvalidException("O email informado já existe!!!");
-            }
+            return retrieveSingleResult(query);
         } catch (NoUserException e) {
+            return null;
         }
     }
 }
